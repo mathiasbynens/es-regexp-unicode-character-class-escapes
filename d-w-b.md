@@ -12,7 +12,7 @@ See <http://esdiscuss.org/topic/questions-regarding-es6-unicode-regular-expressi
 
 ## `\d`
 
-`/\d/u` matches any symbol in the [`Nd` (Decimal Digit Number)](http://codepoints.net/search?gc=Nd) Unicode category. This is the complete set of digits that are also matched by `\w` in this proposal. Note that this excludes the non-digit numbers in the [`Nl` (Letter Number)](http://codepoints.net/search?gc=Nl) or [`No` (Other Number)](http://codepoints.net/search?gc=No) categories.
+`/\d/u` matches any symbol in the [`Nd` (Decimal Digit Number)](https://codepoints.net/search?gc=Nd) Unicode category. This is the complete set of digits that are also matched by `\w` in this proposal. Note that this excludes the non-digit numbers in the [`Nl` (Letter Number)](https://codepoints.net/search?gc=Nl) or [`No` (Other Number)](https://codepoints.net/search?gc=No) categories.
 
 `/\d/u` would then be equivalent to the following ES5-compatible regular expression:
 
@@ -23,9 +23,9 @@ See <http://esdiscuss.org/topic/questions-regarding-es6-unicode-regular-expressi
 …which was generated using the following Node.js script:
 
 ```js
-var regenerate = require('regenerate');
-var Nd = require('unicode-8.0.0/categories/Nd/code-points');
-var dSet = regenerate(Nd);
+const regenerate = require('regenerate');
+const Nd = require('unicode-8.0.0/categories/Nd/code-points');
+const dSet = regenerate(Nd);
 console.log(dSet.toString());
 ```
 
@@ -33,7 +33,7 @@ console.log(dSet.toString());
 
 `/\w/u` matches [the UTS#18 `<word_character>` production](http://unicode.org/reports/tr18/#Simple_Word_Boundaries):
 
-> The class of `<word_character>` includes all the [Alphabetic](http://unicode.org/reports/tr44/#Alphabetic) values from the Unicode character database, from `UnicodeData.txt` [UData], plus the decimals ([`General_Category=Decimal_Number`](http://codepoints.net/search?gc=Nd), or equivalently `Numeric_Type=Decimal`), and the [U+200C ZERO WIDTH NON-JOINER](http://codepoints.net/U+200C) and [U+200D ZERO WIDTH JOINER](http://codepoints.net/U+200D) (`Join_Control=True`).
+> The class of `<word_character>` includes all the [Alphabetic](http://unicode.org/reports/tr44/#Alphabetic) values from the Unicode character database, from `UnicodeData.txt` [UData], plus the decimals ([`General_Category=Decimal_Number`](https://codepoints.net/search?gc=Nd), or equivalently `Numeric_Type=Decimal`), and the [U+200C ZERO WIDTH NON-JOINER](https://codepoints.net/U+200C) and [U+200D ZERO WIDTH JOINER](https://codepoints.net/U+200D) (`Join_Control=True`).
 
 `/w/u` would then be equivalent to the following ES5-compatible regular expression:
 
@@ -44,10 +44,10 @@ console.log(dSet.toString());
 …which was generated using the following Node.js script:
 
 ```js
-var regenerate = require('regenerate');
-var Alphabetic = require('unicode-8.0.0/properties/Alphabetic/code-points');
-var Nd = require('unicode-8.0.0/categories/Nd/code-points');
-var wSet = regenerate(Alphabetic, Nd, 0x200C, 0x200D);
+const regenerate = require('regenerate');
+const Alphabetic = require('unicode-8.0.0/properties/Alphabetic/code-points');
+const Nd = require('unicode-8.0.0/categories/Nd/code-points');
+const wSet = regenerate(Alphabetic, Nd, 0x200C, 0x200D);
 console.log(wSet.toString());
 ```
 
